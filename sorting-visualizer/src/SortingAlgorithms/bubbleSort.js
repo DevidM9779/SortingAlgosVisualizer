@@ -8,6 +8,9 @@ function bubbleSort(array, animations) {
             // Marks them with a different color
             animations.push([i, i+1])
             if (array[i] > array[i+1]) {
+                // Add animation for switching bar positions
+                animations.push([i, i+1, array[i], array[i+1]])
+
                 let temp = array[i]
                 array[i] = array[i+1]
                 array[i+1] = temp
@@ -22,7 +25,7 @@ function bubbleSort(array, animations) {
         animations.push([array.length-1-counter])
         counter++
     }
-    return array
+    console.log(array)
 }
 
 export default function getBubbleSortAnimations(array) {

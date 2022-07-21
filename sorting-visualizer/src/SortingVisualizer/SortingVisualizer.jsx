@@ -33,21 +33,42 @@ export default class SortingVisualizer extends React.Component {
         for (let i = 0; i<animations.length; i++) {
             const arrayBars = document.getElementsByClassName('array-bar')
 
-            if (animations[i].length > 1) {
+            // Animation for comparing two bars
+            if (animations[i].length === 2) {
                 const [index1, index2] = animations[i]
                 const bar1Style = arrayBars[index1].style
                 const bar2Style = arrayBars[index2].style
-                const color = colorChanged ? SECONDARY_COLOR : PRIMARY_COLOR
+                const color = colorChanged ? PRIMARY_COLOR : SECONDARY_COLOR
+                colorChanged = !colorChanged
                 setTimeout(() => {
                     bar1Style.backgroundColor = color;
                     bar2Style.backgroundColor = color;
                 }, i * ANIMATION_SPEED_MS)
-            } else {
-                setTimeout(() => {
 
-                })
+            // Animation for swapping two bars
+            } else if (animations[i].length === 4) {
+                const [index1, index2, height1, height2] = animations[i]
+                const bar1style = arrayBars[index1].style
+                const bar2style = arrayBars[index2].style
+
+                setTimeout(() => {
+                    bar1style.height = `${height2}px`
+                    bar2style.height = `${height1}px`
+                }, i * ANIMATION_SPEED_MS)
+
+            // Animation for marking down sorted bars
+            } else {
+                // sorted bar
+                const [index] = animations[i]
+                const color = 'green'
+                const barStyle = arrayBars[index].style
+
+                setTimeout(() => {
+                    barStyle.backgroundColor = color
+                }, i * ANIMATION_SPEED_MS)
             }
         }
+
     }
 
 
@@ -70,6 +91,7 @@ export default class SortingVisualizer extends React.Component {
                     ))
                 }
                 <button onClick={() => this.resetArr()}>Reset Array</button>
+                <button onClick={() => this.bubbleSort()}>BubbleSort</button>
             </div>
         )
     }
