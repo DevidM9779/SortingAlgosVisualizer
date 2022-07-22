@@ -1,3 +1,26 @@
+/*
+// Bubble sort algorithm idea
+function bubbleSort(array) {
+  var isSorted = false
+  var counter = 0
+  while (!isSorted) {
+    isSorted = true
+    for (let i = 0; i<array.length-1-counter; i++) {
+      if (array[i] > array[i+1]) {
+        let temp = array[i]
+        array[i] = array[i+1]
+        array[i+1] = temp
+        isSorted = false
+      }
+    }
+    counter++
+  }
+  return array
+}
+ */
+
+
+
 function bubbleSort(array, animations) {
     let isSorted = false;
     let counter = 0;
@@ -25,7 +48,7 @@ function bubbleSort(array, animations) {
         animations.push([array.length-1-counter])
         counter++
     }
-    console.log(array)
+    for (let i = array.length-1-counter; i>=0; i--) animations.push([i])
 }
 
 export default function getBubbleSortAnimations(array) {

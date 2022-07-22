@@ -6,8 +6,8 @@
 }
 
 .array-bar {
-    width: 2px;
+    width: 15px;
     display: inline-block;
     margin: 0 1px;
-    background-color: turquoise;
+    background-color: skyblue;
 }
